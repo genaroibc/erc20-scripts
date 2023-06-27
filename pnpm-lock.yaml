@@ -1,9 +1,17 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  dotenv:
+    specifier: 16.3.1
+    version: 16.3.1
   ethers:
     specifier: 5.7.2
     version: 5.7.2
+
+devDependencies:
+  '@types/node':
+    specifier: ^20.3.2
+    version: 20.3.2
 
 packages:
 
@@ -322,6 +330,10 @@ packages:
       '@ethersproject/strings': 5.7.0
     dev: false
 
+  /@types/node@20.3.2:
+    resolution: {integrity: sha512-vOBLVQeCQfIcF/2Y7eKFTqrMnizK5lRNQ7ykML/5RuwVXVWxYkgwS7xbt4B6fKCUPgbSL5FSsjHQpaGQP/dQmw==}
+    dev: true
+
   /aes-js@3.0.0:
     resolution: {integrity: sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==}
     dev: false
@@ -340,6 +352,11 @@ packages:
 
   /brorand@1.1.0:
     resolution: {integrity: sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==}
+    dev: false
+
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /elliptic@6.5.4:
