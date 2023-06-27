@@ -6,3 +6,5 @@ Script for interacting with ERC20 methods like:
 - approve
 - transfer
 - transferFrom
+
+The main idea is to test methods, understand errors and implement error handling.
