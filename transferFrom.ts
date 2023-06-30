@@ -25,29 +25,51 @@ const usdcInstance = new ethers.Contract(
 ;(async () => {
   try {
     const balance = await usdcInstance.balanceOf(fromSigner.address)
+    const amount = ethers.utils.parseUnits("1", 6)
 
-    console.log({ balance: ethers.utils.formatUnits(balance, 6) })
+    logBalance(usdcInstance)
+
+    if (balance.lte(amount)) {
+      throw new Error("balance exceeds amount")
+    }
 
     const allowance = await usdcInstance.allowance(
       fromSigner.address,
-      usdcInstance.address
+      toSigner.address
     )
 
     console.log({
       allowance: allowance.toString()
     })
 
-    const result = await usdcInstance.transferFrom(
+    if (allowance.lte(amount)) {
+      await usdcInstance.approve(toSigner.address, amount)
+    }
+
+    const _allowance = await usdcInstance.allowance(
+      fromSigner.address,
+      toSigner.address
+    )
+
+    console.log({ a: _allowance.toString() })
+
+    const connectedContract = usdcInstance.connect(toSigner)
+
+    const result = await connectedContract.transferFrom(
       fromSigner.address,
       toSigner.address,
-      ethers.utils.parseUnits("1", 6)
+      amount
     )
 
     console.log({ result })
 
-    const updatedBalance = await usdcInstance.balanceOf(fromSigner.address)
-    console.log({ updatedBalance: ethers.utils.formatUnits(updatedBalance, 6) })
+    logBalance(usdcInstance)
   } catch (error) {
     console.log({ error })
   }
 })()
+
+const logBalance = async (usdcInstance: ethers.Contract) => {
+  const balance = await usdcInstance.balanceOf(fromSigner.address)
+  console.log({ balance: ethers.utils.formatUnits(balance, 6) })
+}
