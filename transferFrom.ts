@@ -64,6 +64,10 @@ const usdcInstance = new ethers.Contract(
 
     console.log({ result })
 
+    const txStatus = await result.wait()
+
+    console.log({ txStatus })
+
     logBalance({ usdcInstance, address: fromSigner.address })
   } catch (error) {
     console.log({ error })
