@@ -2,6 +2,7 @@ import { ethers } from "ethers"
 import erc20Abi from "./erc20Abi.json"
 import { ETHEREUM_RPC_ENDPOINT, USDC_CONTRACT_ADDRESS } from "./constants"
 import dotenv from "dotenv"
+import { logBalance } from "./utils/logBalance"
 
 dotenv.config()
 
@@ -24,13 +25,15 @@ const usdcInstance = new ethers.Contract(
 
 ;(async () => {
   const balance = await usdcInstance.balanceOf(fromSigner.address)
+  const amount = ethers.utils.parseUnits("100", 6)
 
-  console.log({ balance: ethers.utils.formatUnits(balance, 6) })
+  if (amount.gte(balance)) {
+    throw new Error("amount exceeds balance")
+  }
 
-  const result = await usdcInstance.transfer(
-    toSigner.address,
-    ethers.utils.parseUnits("1", 6)
-  )
+  logBalance({ address: fromSigner.address, usdcInstance })
+
+  const result = await usdcInstance.transfer(toSigner.address, amount)
 
   console.log({ result })
 
@@ -38,6 +41,5 @@ const usdcInstance = new ethers.Contract(
 
   console.log({ tx })
 
-  const updatedBalance = await usdcInstance.balanceOf(fromSigner.address)
-  console.log({ updatedBalance: ethers.utils.formatUnits(updatedBalance, 6) })
+  logBalance({ address: fromSigner.address, usdcInstance })
 })()
