@@ -11,5 +11,9 @@ The main idea is to test methods, understand errors and implement error handling
 
 ## Run scripts
 
-- `transfer`: `pnpm transfer`
-- `transferFrom`: `pnpm transferFrom`
+- `transfer`:
+  - function call: `pnpm transfer`
+  - encoded function data: `pnpm transferEncoded`
+- `transferFrom`:
+  - function call: `pnpm transferFrom`
+  - encoded function data: `pnpm transferFromEncoded`

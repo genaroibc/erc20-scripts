@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node index.ts",
     "transferFrom": "ts-node ./transferFrom.ts",
-    "transfer": "ts-node ./transfer.ts"
+    "transfer": "ts-node ./transfer.ts",
+    "transferEncoded": "ts-node ./transferEncoded.ts"
   },
   "keywords": [],
   "author": "",
