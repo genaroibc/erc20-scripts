@@ -7,7 +7,8 @@
     "dev": "ts-node index.ts",
     "transferFrom": "ts-node ./transferFrom.ts",
     "transfer": "ts-node ./transfer.ts",
-    "transferEncoded": "ts-node ./transferEncoded.ts"
+    "transferEncoded": "ts-node ./transferEncoded.ts",
+    "transferFromEncoded": "ts-node ./transferFromEncoded.ts"
   },
   "keywords": [],
   "author": "",
