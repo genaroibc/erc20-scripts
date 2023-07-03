@@ -40,15 +40,17 @@ const usdcInterface = usdcInstance.interface
     amount
   ])
 
-  const tx = await fromSigner.sendTransaction({
+  const signedTx = await fromSigner.signTransaction({
     from: fromSigner.address,
-    to: toSigner.address,
-    value: amount,
-    gasLimit: "20000000",
-    data: transferEncodedData
+    to: USDC_CONTRACT_ADDRESS,
+    gasLimit: 20000000,
+    data: transferEncodedData,
+    maxFeePerGas: 357386,
+    type: 2,
+    chainId: 1
   })
 
-  console.log({ tx })
+  const tx = await provider.sendTransaction(signedTx)
 
   const txStatus = await tx.wait()
 
