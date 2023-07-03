@@ -26,7 +26,7 @@ const usdcInstance = new ethers.Contract(
 ;(async () => {
   try {
     const balance = await usdcInstance.balanceOf(fromSigner.address)
-    const amount = ethers.utils.parseUnits("1", 6)
+    const amount = ethers.utils.parseUnits("10", 6)
 
     logBalance({ usdcInstance, address: fromSigner.address })
 
@@ -63,11 +63,8 @@ const usdcInstance = new ethers.Contract(
         amount
       ])
 
-    const tx = await fromSigner.sendTransaction({
-      from: fromSigner.address,
-      to: toSigner.address,
-      value: amount,
-      gasLimit: "200000000",
+    const tx = await toSigner.sendTransaction({
+      to: USDC_CONTRACT_ADDRESS,
       data: transferFromEncodedData
     })
 
